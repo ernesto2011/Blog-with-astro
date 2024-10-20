@@ -5,8 +5,8 @@ import '../styles/blog.css'
 // interface Props {
 //     title?: string
 // }
-const {title, ...rest} = Astro.props;
-const frontmatter = rest.frontmatter;
+const {title} = Astro.props;
+// const frontmatter = rest.frontmatter;
 
 ---
 
@@ -16,11 +16,11 @@ const frontmatter = rest.frontmatter;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{frontmatter.title}</title>
+		<title>{title}</title>
         <ViewTransitions />
 	</head>
 	<body class="bg-gray-900 p-2">
-        <a href="/">Go Back</a>
+        <a id="go-back" href="/">Go Back</a>
 		<main class="mb-10 max-w-5xl m-auto">
             <slot />
         </main>
