@@ -4,11 +4,13 @@ import { date } from 'astro:schema';
 
 const blogCollection = defineCollection({
   type: 'content', 
-  schema: z.object({
+  schema:({image})=> z.object({
     title: z.string(),
     date: z.date(),
     description: z.string(),
-    image: z.string().optional(),
+    image: image().refine((img) => img.width < 1200,{
+      message: 'Image width should be less than 1200px'
+    }),
     author: z.string(),
     tags: z.array(z.string()),
   }),
