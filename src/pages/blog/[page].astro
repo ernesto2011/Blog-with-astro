@@ -25,7 +25,7 @@ const { page } = Astro.props;
 
   <section class="bg-gray-900" aria-label="Entradas de blog">
     <div class="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2">
-      {page.data.map((post) => <TypedBlog post={post} />)}
+      {page.data.map((post:any) => <TypedBlog post={post} />)}
     </div>
   </section>
 

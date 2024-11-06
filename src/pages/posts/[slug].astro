@@ -30,7 +30,7 @@ const author = (await getEntry('author', post.data.author.id)).data;
      <div class="flex flex-row text-md gap-4 text-md mt-2">
         <Image src={author.avatar} class='rounded-full' alt={author.name} width={50} height={50} />
         <div class="flex flex-col justify-center">
-            <a href="#">{author.name}</a>
+            <a href={`/blog/${frontmatter.author.id}`}>{author.name}</a>
             <span class="text-xs text-gray-200">
                 {
                 Formatter.formatDate(frontmatter.date)
