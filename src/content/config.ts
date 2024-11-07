@@ -13,6 +13,7 @@ const blogCollection = defineCollection({
     //author: z.string(),
     author:reference('author'),
     tags: z.array(z.string()),
+    isDraft: z.boolean().default(false),
   }),
 });
 
@@ -21,6 +22,11 @@ const authorCollection = defineCollection({
   schema:({image})=> z.object({
     name: z.string(),
     avatar: image(),
+    twitter: z.string(),
+    github: z.string(),
+    bio: z.string(),
+    linkedIn: z.string(),
+    subtitle: z.string(),
   }),
 });
 export const collections = {
