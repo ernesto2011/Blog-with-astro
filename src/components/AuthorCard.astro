@@ -9,7 +9,7 @@ const {author} = Astro.props;
 const {name,avatar, bio, github, linkedIn, subtitle, twitter} = author.data
 ---
 
-<div class="max-w-lg bg-white rounded-lg shadow-md p-6">
+<div class="max-w-lg bg-white rounded-lg shadow-md p-4">
     <Image class=" rounded-full mx-auto" src={avatar} alt="Profile picture" width='128' height='128'/>
     <h2 class="text-center text-2xl font-semibold mt-3">{name}</h2>
     <p class="text-center text-gray-600 mt-1">{subtitle}</p>
