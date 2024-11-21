@@ -1,18 +1,16 @@
 ---
-import type { GetStaticPaths } from "astro";
-import MainLayout from "../../layouts/MainLayout.astro";
-import type { CollectionEntry } from "astro:content";
-import { getCollection } from "astro:content";
-import TypedBlog from "../../components/TypedBlog.astro";
+import type { GetStaticPaths } from 'astro';
+// Type GetStaticPaths de Astro
+import TypedBlogPost from 'src/components/TypedBlogPost.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
+import { getCollection } from 'astro:content';
 
-interface Props {
-  post: CollectionEntry<"blog">;
-}
+export const getStaticPaths = (async ({ paginate }) => {
+  const blogPosts = await getCollection('blog');
 
-export const getStaticPaths = (async({ paginate }) => {
-    const post = await getCollection('blog')
-  return paginate(post, {pageSize:2})
+  return paginate(blogPosts, { pageSize: 2 });
 }) satisfies GetStaticPaths;
+
 const { page } = Astro.props;
 ---
 
@@ -24,26 +22,24 @@ const { page } = Astro.props;
   </div>
 
   <section class="bg-gray-900" aria-label="Entradas de blog">
-    <div class="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2">
-      {page.data.map((post:any) => <TypedBlog post={post} />)}
+    <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+      {page.data.map((post) => <TypedBlogPost post={post} />)}
     </div>
   </section>
 
-  <section aria-label="Controles" class="flex justify-between mt-10">
-    <!--   page .. ?? prev   -->
+  <section aria-label="Controles" class="flex justify-between my-10">
     <a
       href={page.url.prev}
       class:list={{
         disabled: !page.url.prev,
-      }}>Anterior</a
+      }}>Anteriores</a
     >
 
-    <!--   page .. ?? next   -->
     <a
       href={page.url.next}
       class:list={{
         disabled: !page.url.next,
-      }}>Siguiente</a
+      }}>Siguientes</a
     >
   </section>
 </MainLayout>
